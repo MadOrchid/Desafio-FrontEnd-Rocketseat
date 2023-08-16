@@ -3,29 +3,30 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { CartIcon } from "./cart-icon";
 
 const CartCount = styled.span`
-  width: 17px
-  height: 17px
-  top: 607px
-  left: -13485px
+    width: 17px;
+    height: 17px;
+    border-radius: 100%;
+    padding: 0 5px;
+    font-size: 10px;
 
-  background: var(--delete-color);
-  color: white;
-  position: absolute;
-  right: -10px;
-  top:50%;
+    background-color: var(--delete-color);
+    color: white;
+
+    margin-left: -10px;
+    position: absolute;
 `
 
 const Container = styled.div`
-  position: relative;
+    position: relative;
 `
 
-export function CartControl() {
-  const { value } = useLocalStorage('cart-items')
+export function CartControl(){
+    const { value } = useLocalStorage('cart-items', [])
 
-  return (
-    <div>
-      <CartIcon />
-      {value.length && <CartCount>{value.lenght}</CartCount>}
-    </div>
-  )
+    return (
+        <Container>
+            <CartIcon/>
+            {value.length && <CartCount>{value.length}</CartCount>}
+        </Container>
+    )
 }

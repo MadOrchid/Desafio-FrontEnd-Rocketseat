@@ -6,8 +6,8 @@ import { PrimaryInputWSearchIcon } from "./primary-input"
 import { CartControl } from "./cart-control"
 
 const sairaStencil = Saira_Stencil_One({
-  subsets: ['latin'],
-  weight: ['400']
+  weight: ['400'],
+  subsets: ['latin']
 })
 
 interface HeaderProps {
@@ -16,25 +16,36 @@ interface HeaderProps {
 
 const TagHeader = styled.header`
   display: flex;
-  aling-items: center;
+  align-items: center;
   justify-content: space-between;
-  padding:20px 160px
+  padding: 20px 160px;
+
+  > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+  }
 `
+
 const Logo = styled.a`
   color: var(--logo-color);
   font-weight: 400;
-  font-size:40px;
+  font-size: 40px;
   line-height: 150%;
 `
 
-export function Header(props: HeaderProps) {
-  return (
-    <TagHeader>
-      <Logo className={sairaStencil.className}>Beneoil</Logo>
-      <div>
-        <PrimaryInputWSearchIcon placeholder="Procurando por algo específico ?" />
-        <CartControl />
-      </div>
-    </TagHeader>
+export function Header(props : HeaderProps){
+
+  return(
+      <TagHeader>
+          <Logo className={sairaStencil.className}>Beneoil</Logo>
+          <div>
+              <PrimaryInputWSearchIcon
+                  placeholder="Procurando por algo específico?"
+              />
+              <CartControl/>
+          </div>
+      </TagHeader>
   )
 }
