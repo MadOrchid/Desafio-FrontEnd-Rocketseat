@@ -1,10 +1,11 @@
+import { FilterBar } from './components/filter-bar'
 import styles from './page.module.css'
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <h1>Olá Mundo </h1>
+        <FilterBar />
       </div>
     </main>
   )

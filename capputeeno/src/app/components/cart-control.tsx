@@ -13,7 +13,6 @@ const CartCount = styled.span`
     color: white;
 
     margin-left: -10px;
-    position: absolute;
 `
 
 const Container = styled.div`
