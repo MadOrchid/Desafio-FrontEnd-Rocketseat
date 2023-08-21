@@ -6,10 +6,6 @@ import { useState } from "react";
 import { useFilter } from "../hooks/use-filter";
 import { PriorityTypes } from "../types/priority-types";
 
-interface FilterByPriorityProps {
-
-}
-
 const FilterContainer = styled.div`
     display: flex;
     align-items: center;
@@ -62,38 +58,31 @@ const PriorityFilter = styled.ul`
     }
 `
 
-const FilterDiv = styled.div`
-    display: flex;
-    margin-left: 900px;
-    position: relative;
-`
+export function FilterByPriority(){
+    const [isOpen, setIsOpen] = useState(false)
+    const { setPriority } = useFilter()
 
-export function FilterByPriority(props: FilterByPriorityProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleOpen = () => setIsOpen(prev => !prev)
-  const { setPriority } = useFilter()
+    const handleOpen = () => setIsOpen(prev => !prev)
 
-  const handleUpadatePriority = (value: PriorityTypes) => {
-    setPriority(value)
-    setIsOpen(false)
-  }
+    const handleUpdatePriority = (value: PriorityTypes) => {
+        setPriority(value)
+        setIsOpen(false)
+    }
 
-  return (
-    <FilterContainer>
-      <FilterDiv>
-
-        <button onClick={handleOpen}>
-          Organizar por
-          <ArrowIcon />
-        </button>
-      {isOpen &&
-        <PriorityFilter>
-          <li onClick={() =>handleUpadatePriority(PriorityTypes.NEWS)}>Novidades</li>
-          <li onClick={() =>handleUpadatePriority(PriorityTypes.BIGGEST_PRICE)}>Preço: Maior - Menor</li>
-          <li onClick={() =>handleUpadatePriority(PriorityTypes.MINOR_PRICE)}>Preço: Menor - Maior</li>
-          <li onClick={() =>handleUpadatePriority(PriorityTypes.POPULARITY)}>Mais vendidos</li>
-        </PriorityFilter>}
-      </FilterDiv>
-    </FilterContainer>
-  )
+    return(
+        <FilterContainer>
+            <button onClick={handleOpen}>
+                Organizar por
+                <ArrowIcon/>
+            </button>
+            {isOpen && 
+            <PriorityFilter>
+                <li onClick={() => handleUpdatePriority(PriorityTypes.NEWS)}>Novidades</li>
+                <li onClick={() => handleUpdatePriority(PriorityTypes.BIGGEST_PRICE)}>Preço: Maior - menor</li>
+                <li onClick={() => handleUpdatePriority(PriorityTypes.MINOR_PRICE)}>Preço: Menor - maior</li>
+                <li onClick={() => handleUpdatePriority(PriorityTypes.POPULARITY)}>Mais vendidos</li>
+            </PriorityFilter>
+        }
+        </FilterContainer>
+    )
 }
